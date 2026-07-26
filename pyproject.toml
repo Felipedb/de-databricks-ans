@@ -1,0 +1,20 @@
+[project]
+name = "de-databricks-ans"
+version = "1.0.0"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "C4"]
+
+[tool.ruff.lint.per-file-ignores]
+# Módulos DLT rodam dentro do runtime Databricks: spark e dlt são injetados.
+"src/dlt/*" = ["F821"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q --cov=src/ingestion --cov-report=term-missing"
