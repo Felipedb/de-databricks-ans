@@ -1,0 +1,37 @@
+# Databricks Asset Bundles: o pipeline inteiro versionado e implantável
+# com `databricks bundle deploy`. Compatível com o Free Edition.
+bundle:
+  name: de-databricks-ans
+
+variables:
+  catalog:
+    description: Catálogo do Unity Catalog
+    default: ans
+  landing_path:
+    description: Volume de landing dos CSVs baixados
+    default: /Volumes/ans/landing/demonstracoes
+
+resources:
+  pipelines:
+    ans_medalhao:
+      name: ans-medalhao-${bundle.target}
+      catalog: ${var.catalog}
+      schema: demonstracoes
+      serverless: true
+      continuous: false
+      libraries:
+        - file:
+            path: ./src/dlt/bronze.py
+        - file:
+            path: ./src/dlt/silver.py
+        - file:
+            path: ./src/dlt/gold.py
+      configuration:
+        ans.landing_path: ${var.landing_path}
+
+targets:
+  dev:
+    default: true
+    mode: development
+  prod:
+    mode: production
