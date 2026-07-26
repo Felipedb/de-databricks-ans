@@ -5,9 +5,8 @@ sem relistar o diretório inteiro: é o padrão para landing zone em Databricks.
 Bronze não aplica regra de negócio; apenas anexa metadados técnicos.
 """
 
-from pyspark.sql import functions as F
-
 import dlt  # noqa: F401 - resolvido pelo runtime do Databricks
+from pyspark.sql import functions as F
 
 LANDING = spark.conf.get("ans.landing_path", "/Volumes/ans/landing/demonstracoes")  # noqa: F821
 

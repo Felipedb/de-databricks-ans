@@ -4,9 +4,8 @@ Materializada como tabela (não streaming): agregação completa recalculada a
 cada update, adequado ao volume trimestral da ANS.
 """
 
-from pyspark.sql import functions as F
-
 import dlt  # noqa: F401
+from pyspark.sql import functions as F
 
 # Grupos do plano de contas da ANS usados nos indicadores.
 CONTA_RECEITA = "3"

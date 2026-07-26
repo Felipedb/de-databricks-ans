@@ -6,9 +6,8 @@ As expectations do DLT são o quality gate nativo do Databricks:
 As métricas ficam no event log do pipeline, consultáveis em SQL.
 """
 
-from pyspark.sql import functions as F
-
 import dlt  # noqa: F401
+from pyspark.sql import functions as F
 
 REGRAS_DESCARTE = {
     "registro_ans_valido": "registro_ans IS NOT NULL AND registro_ans RLIKE '^[0-9]+$'",
